@@ -31,6 +31,7 @@ def contacts():
 @entry.route('/profile')
 @login_required
 def profile():
+    """function for rendering profile page and pass user name and user mailadress to request :return:"""
     return render_template('profile.html', name=current_user.name, email=current_user.email)
 
 @entry.route('/update', methods=['POST'])

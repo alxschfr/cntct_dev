@@ -6,4 +6,5 @@ main = Blueprint('main', __name__)
 
 @main.route('/', methods=['GET', 'POST'])
 def home():
+    """function to render landing page :return:"""
     return render_template('home.html')

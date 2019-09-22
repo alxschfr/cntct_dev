@@ -16,10 +16,12 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
+    """function for rendering login.html"""
     return render_template('login.html')
 
 @auth.route('/login', methods=['POST'])
 def login_post():
+    """function to process POST-request of login-route"""
     # login code goes here
     email = request.form.get('email')
     password = request.form.get('password')
@@ -38,10 +40,12 @@ def login_post():
 
 @auth.route('/signup')
 def signup():
+    """funtion for rendering signup.html :return:"""
     return render_template('signup.html')
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():
+    """function to process POSTT_request of signup-route :return:"""
     email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
@@ -63,5 +67,6 @@ def signup_post():
 @auth.route('/logout')
 @login_required
 def logout():
+    """function to logout user and redirect to landingpage :return:"""
     logout_user()
     return redirect(url_for('main.home'))
