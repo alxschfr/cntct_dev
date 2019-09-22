@@ -15,12 +15,14 @@ following tutorials:
 from flask import Flask, g
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_bootstrap import Bootstrap
 from flask_debugtoolbar import DebugToolbarExtension
 
 # Globally accessible libraries (ORM for database connection and DebugToolbar
 db = SQLAlchemy()
 debug_tb = DebugToolbarExtension()
 login_manager = LoginManager()
+bs = Bootstrap()
 
 def create_app():
     """Initialize core application with flask app factory pattern (libraries, blueprints """
@@ -30,6 +32,7 @@ def create_app():
 
     # Initialise Plugins
     db.init_app(app)
+    bs.init_app(app)
     debug_tb.init_app(app)
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)

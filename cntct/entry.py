@@ -9,6 +9,7 @@ with the concept of object-oriented programming. So mostly an exercise up until 
 
 from flask import request, render_template, redirect, Blueprint
 from flask_login import login_required, current_user
+from .forms import AddContact
 from .models import Contact, db
 
 entry = Blueprint('entry', __name__)
@@ -19,6 +20,7 @@ def contacts():
     flask-function for storing input data and render the flask template for the apps main page
     :return:
     """
+    form = AddContact()
     if request.form:
         contact = Contact(first_name=request.form.get('first_name'),
                           last_name=request.form.get('last_name'),
@@ -26,7 +28,7 @@ def contacts():
         db.session.add(contact)
         db.session.commit()
     contacts = Contact.query.filter(Contact.user_id == current_user.id).all()
-    return render_template('contacts.html', contacts=contacts, current_user=current_user)
+    return render_template('contacts.html', contacts=contacts, current_user=current_user, form=form)
 
 @entry.route('/profile')
 @login_required

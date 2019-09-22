@@ -1,8 +1,24 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h1>CNTCT - Contacts</h1>
+{% block app_content %}
+<h1>Contacts</h1>
 <h2>Add contact</h2>
+
+<!--
+<form action="" method="POST" novalidate>
+	{{ form.hidden_tag() }}
+	<p>
+		{{ form.first_name.label }}<br>
+		{{ form.first_name(size=64) }}
+	</p>
+	<p>
+		{{ form.last_name.label }}<br>
+		{{ form.last_name(size=64) }}
+	</p>
+	<p>{{ form.submit() }}</p>
+
+</form>
+-->
 <form method='POST' action='/contacts'>
   <input type='hidden' value='{{current_user.id}}' name='user_id'>
   <p>First Name:</p>

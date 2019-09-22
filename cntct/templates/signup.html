@@ -1,13 +1,26 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h1>CNTCT - Sign Up</h1>
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-	{{ messages[0] }} Go to <a href="{{ url_for('auth.login') }}"> login page</a>.
-{% endif %}
-{% endwith %}
+{% block app_content %}
+<h1>Sign Up</h1>
 
+<form action="/signup" method="POST" novalidate>
+	{{ form.hidden_tag() }}
+	<p>
+		{{ form.email.label }}<br>
+		{{ form.email(size=64) }}
+	</p>
+	<p>
+		{{ form.name.label }}<br>
+		{{ form.name(size=64) }}
+	</p>
+	<p>
+		{{ form.password.label }}<br>
+		{{ form.password(size=64) }}
+	</p>
+	<p>{{ form.submit() }}</p>
+
+</form>
+<!--
 <form method="POST" action="/signup">
 	<p>Emailaddress:</p>
 	<input type="email" name="email" placeholder="Your Email" autofokus="">
@@ -17,4 +30,6 @@
 	<input type="password" name="password" placeholder="Your Password">
 	<input type="submit" value="Sign Up">
 </form>
+-->
+
 {% endblock %}

@@ -10,6 +10,7 @@ with the concept of object-oriented programming. So mostly an exercise up until 
 from flask import request, render_template, redirect, Blueprint, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
+from .forms import LoginForm, SignupForm
 from .models import User, db
 
 auth = Blueprint('auth', __name__)
@@ -17,7 +18,8 @@ auth = Blueprint('auth', __name__)
 @auth.route('/login')
 def login():
     """function for rendering login.html"""
-    return render_template('login.html')
+    form = LoginForm()
+    return render_template('login.html', form=form)
 
 @auth.route('/login', methods=['POST'])
 def login_post():
@@ -41,7 +43,8 @@ def login_post():
 @auth.route('/signup')
 def signup():
     """funtion for rendering signup.html :return:"""
-    return render_template('signup.html')
+    form = SignupForm()
+    return render_template('signup.html', form=form)
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():

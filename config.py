@@ -25,3 +25,6 @@ class Config:
     # Database
     SQLALCHEMY_DATABASE_URI = 'sqlite:///db\\cntct.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    #Bootstrap Configuration
+    BOOTSTRAP_SERVE_LOCAL = True
