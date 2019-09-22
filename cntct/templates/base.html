@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>CNTCT - Simply Contacts</title>
+</head>
+
+<body>
+	<div class="navigation">
+		<a href="{{ url_for('main.home') }}">Home</a>
+		{% if current_user.is_authenticated %}
+		<a href="{{ url_for('entry.contacts') }}">Contacts</a>
+		<a href="{{ url_for('entry.profile') }}">Profile</a>
+		{% endif %}
+		{% if not current_user.is_authenticated %}
+		<a href="{{ url_for('auth.login') }}">Login</a>
+		<a href="{{ url_for('auth.signup') }}">Sign Up</a>
+		{% endif %}
+		{% if current_user.is_authenticated %}
+		<a href="{{ url_for('auth.logout') }}">Logout</a>
+		{% endif %}
+	</div>
+	<div class="body">
+		{% block content %}
+		{% endblock %}
+	</div>
+</body>
+</html>

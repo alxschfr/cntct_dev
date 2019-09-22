@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>CNTCT - Contacts</h1>
+<h2>Add contact</h2>
+<form method='POST' action='/contacts'>
+  <input type='hidden' value='{{current_user.id}}' name='user_id'>
+  <p>First Name:</p>
+  <input type='text' name='first_name'>
+  <p>Last Name:</p>
+  <input type='text' name='last_name'>
+
+  <input type="submit" value="Add">
+</form>
+
+<h2>List of Contacts</h2>
+{% for contact in contacts %}
+  <p>{{contact.first_name}} {{contact.last_name}}</p>
+  <form method='POST' action='./update'>
+    <input type='hidden' value='{{contact.contact_id}}' name='contact_id'>
+    <input type='hidden' value='{{contact.first_name}}' name='old_fn'>
+    <input type='hidden' value='{{contact.last_name}}' name='old_ln'>
+    <input type='text' value='{{contact.first_name}}' name='new_fn'>
+    <input type='text' value='{{contact.last_name}}' name='new_ln'>
+    <input type='submit' value='Update'>
+  </form>
+  <form method='POST' action='./delete'>
+    <input type='hidden' value='{{contact.contact_id}}' name='contact_id'>
+    <input type='submit' value='Delete'>
+  </form>
+{% endfor %}
+{% endblock %}

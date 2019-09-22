@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>CNTCT - Log In</h1>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+	{{ messages[0] }}
+{% endif %}
+{% endwith %}
+<form method="POST" action="/login">
+	<p>Emailaddress:</p>
+	<input type="email" name="email" placeholder="Your Email" autofokus="">
+	<p>Password:</p>
+	<input type="password" name="password" placeholder="Your Password">
+	<input type="submit" value="Log In">
+	<input type="checkbox", name="remember">Remember me
+</form>
+{% endblock %}
