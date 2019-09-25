@@ -4,8 +4,9 @@
 <h1>Contacts</h1>
 <h2>Add contact</h2>
 
-<!--
+
 <form action="" method="POST" novalidate>
+    {{ form.user_id(value=current_user.id) }}
 	{{ form.hidden_tag() }}
 	<p>
 		{{ form.first_name.label }}<br>
@@ -18,7 +19,8 @@
 	<p>{{ form.submit() }}</p>
 
 </form>
--->
+
+<!--
 <form method='POST' action='/contacts'>
   <input type='hidden' value='{{current_user.id}}' name='user_id'>
   <p>First Name:</p>
@@ -28,7 +30,7 @@
 
   <input type="submit" value="Add">
 </form>
-
+-->
 <h2>List of Contacts</h2>
 {% for contact in contacts %}
   <p>{{contact.first_name}} {{contact.last_name}}</p>

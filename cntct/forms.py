@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, HiddenField
 from wtforms.validators import DataRequired, Email
 
@@ -14,8 +15,8 @@ class SignupForm(FlaskForm):
     password = PasswordField('Password:', validators=[DataRequired])
     submit = SubmitField('Sign Up')
 
-#class AddContact(FlaskForm):
-#    user_id = HiddenField()
-#    first_name = StringField('First Name:', validators=[DataRequired])
-#    last_name = StringField('Last Name:', validators=[DataRequired])
-#    submit = SubmitField('Add')
+class AddContact(FlaskForm):
+    user_id = HiddenField()
+    first_name = StringField('First Name:', validators=[DataRequired])
+    last_name = StringField('Last Name:', validators=[DataRequired])
+    submit = SubmitField('Add')
