@@ -9,7 +9,7 @@ with the concept of object-oriented programming. So mostly an exercise up until 
 
 from flask import request, render_template, redirect, Blueprint
 from flask_login import login_required, current_user
-from .forms import AddContact
+from .forms import AddContact, UpdateContact, DeleteContact
 from .models import Contact, db
 
 entry = Blueprint('entry', __name__)
@@ -20,30 +20,42 @@ def contacts():
     flask-function for storing input data and render the flask template for the apps main page
     :return:
     """
-    form = AddContact()
-    if request.form:
-        contact = Contact(first_name=request.form.get('first_name'),
+    add_contact = AddContact()
+    update_contact = UpdateContact()
+    delete_contact = DeleteContact()
+
+    # if request.form:
+    #    contact = Contact(first_name=request.form.get('first_name'),
+    #                      last_name=request.form.get('last_name'),
+    #                      user_id=request.form.get('user_id'))
+    #    db.session.add(contact)
+    #    db.session.commit()
+    contacts = Contact.query.filter(Contact.user_id == current_user.id).all()
+    return render_template('contacts.html', contacts=contacts, current_user=current_user,
+                           add_contact=add_contact, update_contact=update_contact,
+                           delete_contact=delete_contact)
+
+@entry.route('/add', methods=['POST'])
+def add():
+    """
+    flask-function for adding contact entries based on user input and current user id
+    and committing the changes to sqlite3-database
+    :return:
+    """
+    contact = Contact(first_name=request.form.get('first_name'),
                           last_name=request.form.get('last_name'),
                           user_id=request.form.get('user_id'))
-        db.session.add(contact)
-        db.session.commit()
-    contacts = Contact.query.filter(Contact.user_id == current_user.id).all()
-    return render_template('contacts.html', contacts=contacts, current_user=current_user, form=form)
-
-@entry.route('/profile')
-@login_required
-def profile():
-    """function for rendering profile page and pass user name and user mailadress to request :return:"""
-    return render_template('profile.html', name=current_user.name, email=current_user.email)
+    db.session.add(contact)
+    db.session.commit()
+    return redirect('/contacts')
 
 @entry.route('/update', methods=['POST'])
 def update():
     """
     flask-function for updating the existing database entries based on contact
-    id and commit the changes to the sqlite3-database
+    id and committing the changes to the sqlite3-database
     :return:
     """
-
     contact_id = request.form.get('contact_id')
 
     new_fn = request.form.get('new_fn')
@@ -68,3 +80,10 @@ def delete():
     db.session.delete(contact)
     db.session.commit()
     return redirect('/contacts')
+
+@entry.route('/profile')
+@login_required
+def profile():
+    """function for rendering profile page and pass user name and user mailadress to request :return:"""
+    return render_template('profile.html', name=current_user.name, email=current_user.email)
+

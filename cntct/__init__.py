@@ -12,7 +12,7 @@ following tutorials:
 - https://hackersandslackers.com/demystifying-flask-application-factory/
 """
 
-from flask import Flask, g
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
@@ -25,7 +25,7 @@ login_manager = LoginManager()
 bs = Bootstrap()
 
 def create_app():
-    """Initialize core application with flask app factory pattern (libraries, blueprints """
+    """Initialize core application with flask app factory pattern (libraries, blueprints) """
     app = Flask(__name__, instance_relative_config=False)
     app.config.from_object('config.Config')
     app.debug = True

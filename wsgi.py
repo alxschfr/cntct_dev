@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-WSGI-entry point to start a single app instance
+WSGI-entry point to start a single app instance through flask application factory function
 """
 
 from cntct import create_app

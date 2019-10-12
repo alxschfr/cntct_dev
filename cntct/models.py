@@ -47,4 +47,4 @@ class Contact(db.Model):
         :return:
         """
         return 'ID: {}, First Name: {}, Last Name: {}'.format(self.contact_id,
-                                                               self.first_name, self.last_name)
+                                                              self.first_name, self.last_name)

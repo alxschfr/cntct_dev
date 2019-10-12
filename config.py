@@ -8,7 +8,6 @@ with the concept of object-oriented programming. So mostly an exercise up until 
 """
 
 from os import getenv
-
 from dotenv import load_dotenv #import dotenv to load secret variables from .env
 
 load_dotenv() #call function to load variables from .env

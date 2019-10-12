@@ -4,47 +4,38 @@
 <h1>Contacts</h1>
 <h2>Add contact</h2>
 
-
-<form action="" method="POST" novalidate>
-    {{ form.user_id(value=current_user.id) }}
-	{{ form.hidden_tag() }}
+<form method="POST" action='./add'>
+    {{ add_contact.user_id(value=current_user.id) }}
 	<p>
-		{{ form.first_name.label }}<br>
-		{{ form.first_name(size=64) }}
+		{{ add_contact.first_name.label }}<br>
+		{{ add_contact.first_name(size=64) }}
 	</p>
 	<p>
-		{{ form.last_name.label }}<br>
-		{{ form.last_name(size=64) }}
+		{{ add_contact.last_name.label }}<br>
+		{{ add_contact.last_name(size=64) }}
 	</p>
-	<p>{{ form.submit() }}</p>
+	<p>{{ add_contact.add_contact() }}</p>
 
 </form>
 
-<!--
-<form method='POST' action='/contacts'>
-  <input type='hidden' value='{{current_user.id}}' name='user_id'>
-  <p>First Name:</p>
-  <input type='text' name='first_name'>
-  <p>Last Name:</p>
-  <input type='text' name='last_name'>
-
-  <input type="submit" value="Add">
-</form>
--->
 <h2>List of Contacts</h2>
 {% for contact in contacts %}
   <p>{{contact.first_name}} {{contact.last_name}}</p>
+
   <form method='POST' action='./update'>
-    <input type='hidden' value='{{contact.contact_id}}' name='contact_id'>
-    <input type='hidden' value='{{contact.first_name}}' name='old_fn'>
-    <input type='hidden' value='{{contact.last_name}}' name='old_ln'>
-    <input type='text' value='{{contact.first_name}}' name='new_fn'>
-    <input type='text' value='{{contact.last_name}}' name='new_ln'>
-    <input type='submit' value='Update'>
+	  {{ update_contact.contact_id(value=contact.contact_id) }}
+	  {{ update_contact.old_fn(value=contact.first_name) }}
+	  {{ update_contact.old_ln(value=contact.last_name) }}
+	  {{ update_contact.new_fn(value=contact.first_name, size=64) }}
+	  {{ update_contact.new_ln(value=contact.last_name, size=64) }}
+	  {{ update_contact.update_contact() }}
   </form>
+
+
   <form method='POST' action='./delete'>
-    <input type='hidden' value='{{contact.contact_id}}' name='contact_id'>
-    <input type='submit' value='Delete'>
+	  {{ delete_contact.contact_id(value=contact.contact_id) }}
+	  {{ delete_contact.delete_contact() }}
   </form>
+
 {% endfor %}
 {% endblock %}
