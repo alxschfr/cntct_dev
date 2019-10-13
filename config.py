@@ -22,7 +22,16 @@ class Config:
     DEBUG_TB_INTERCEPT_REDIRECTS = False
 
     # Database
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///db\\cntct.db'
+    #postgres config
+    POSTGRES_URL = getenv('POSTGRES_URL', None)
+    POSTGRES_USER = getenv('POSTGRES_USER', None)
+    POSTGRES_PW = getenv('POSTGRES_PW', None)
+    POSTGRES_DB = getenv('POSTGRES_DB', None)
+    #sqlalchemy config
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(user=POSTGRES_USER,
+                                                                                    pw=POSTGRES_PW,
+                                                                                    url=POSTGRES_URL,
+                                                                                    db=POSTGRES_DB)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     #Bootstrap Configuration

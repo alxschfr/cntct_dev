@@ -31,11 +31,12 @@
 	  {{ update_contact.update_contact() }}
   </form>
 
-
+  <p>
   <form method='POST' action='./delete'>
 	  {{ delete_contact.contact_id(value=contact.contact_id) }}
 	  {{ delete_contact.delete_contact() }}
   </form>
+  </p>
 
 {% endfor %}
 {% endblock %}

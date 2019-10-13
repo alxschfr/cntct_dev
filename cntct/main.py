@@ -1,6 +1,11 @@
-from flask import request, render_template, redirect, Blueprint
-from flask_login import login_required, current_user
-from .models import Contact, db
+# !/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+
+"""
+
+from flask import render_template, Blueprint
 
 main = Blueprint('main', __name__)
 

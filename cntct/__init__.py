@@ -17,9 +17,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_debugtoolbar import DebugToolbarExtension
+from flask_migrate import Migrate
 
 # Globally accessible libraries (ORM for database connection and DebugToolbar
 db = SQLAlchemy()
+migrate = Migrate()
 debug_tb = DebugToolbarExtension()
 login_manager = LoginManager()
 bs = Bootstrap()
@@ -32,6 +34,7 @@ def create_app():
 
     # Initialise Plugins
     db.init_app(app)
+    migrate.init_app(app, db)
     bs.init_app(app)
     debug_tb.init_app(app)
     login_manager.login_view = 'auth.login'

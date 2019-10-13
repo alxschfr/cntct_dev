@@ -38,7 +38,7 @@ def login_post():
         return redirect(url_for('auth.login')) # if user doesn't exist or password is wrong, reload the page
     # if the above check passes, then we know the user has the right credentials
     login_user(user, remember=remember)
-    return redirect(url_for('entry.profile'))
+    return redirect(url_for('entry.contacts'))
 
 @auth.route('/signup')
 def signup():
@@ -72,4 +72,4 @@ def signup_post():
 def logout():
     """function to logout user and redirect to landingpage :return:"""
     logout_user()
-    return redirect(url_for('main.home'))
+    return redirect(url_for('auth.login'))
