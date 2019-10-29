@@ -16,23 +16,32 @@ class Config:
     """Class for configuring Flask-app at initialization"""
 
     # General
+    DEBUG = False
+    TESTING = False
+    CSRF_ENABLED = True
     SECRET_KEY = getenv('SECRET_KEY', None) #use secret key variable obtained from .env via getenv()
 
     # Flask-Debug Toolbar Config
     DEBUG_TB_INTERCEPT_REDIRECTS = False
 
-    # Database
-    #postgres config
-    POSTGRES_URL = getenv('POSTGRES_URL', None)
-    POSTGRES_USER = getenv('POSTGRES_USER', None)
-    POSTGRES_PW = getenv('POSTGRES_PW', None)
-    POSTGRES_DB = getenv('POSTGRES_DB', None)
     #sqlalchemy config
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(user=POSTGRES_USER,
-                                                                                    pw=POSTGRES_PW,
-                                                                                    url=POSTGRES_URL,
-                                                                                    db=POSTGRES_DB)
+    SQLALCHEMY_DATABASE_URI = getenv('DATABASE_URL', None)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     #Bootstrap Configuration
     BOOTSTRAP_SERVE_LOCAL = True
+
+class ProductionConfig(Config):
+    DEBUG = False
+
+class StagingConfig(Config):
+    DEVELOPMENT = True
+    DEBUG = True
+
+class DevelopmentConfig(Config):
+    DEVELOPMENT = True
+    DEBUG = True
+
+class TestingConfig(Config):
+    TESTING = True
+
