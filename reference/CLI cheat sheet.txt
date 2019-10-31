@@ -3,6 +3,11 @@ CLI Cheat Sheet
 -----------------------------
 
 * #'+ GIT +'# *
+git push heroku master = push active branch to remote heroku master branch, heroku will rebuild the application
+                         and restart dyno after successful deployment. Will reinstall requirements.txt if
+                         runtime.txt is updated with new python runtime requirement.
+
+git status = check status of git repository, cd to project directory first
 
 * #'+ GUNICORN +'# *
 gunicorn --bind 0.0.0.0:5000 wsgi:app = bind wsgi entry point to production ready gunicorn server
