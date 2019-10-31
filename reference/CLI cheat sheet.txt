@@ -1,0 +1,11 @@
+-----------------------------
+CLI Cheat Sheet
+-----------------------------
+
+* #'+ GIT +'# *
+
+* #'+ GUNICORN +'# *
+gunicorn --bind 0.0.0.0:5000 wsgi:app = bind wsgi entry point to production ready gunicorn server
+
+* #'+ HEROKU +'# *
+heroku logs --tail = display tailed colored heroku logs in console
