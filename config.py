@@ -31,7 +31,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     #Bootstrap Configuration
-
+    BOOTSTRAP_SERVE_LOCAL = False
 
 class ProductionConfig(Config):
     DEBUG = False

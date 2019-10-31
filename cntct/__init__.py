@@ -27,7 +27,7 @@ bs = Bootstrap()
 def create_app():
     """Initialize core application with flask app factory pattern (libraries, blueprints) """
     app = Flask(__name__)
-    app.config.from_object('config.ProductionConfig')
+    app.config.from_object('config.DevelopmentConfig')
 
     # Initialise Plugins
     db.init_app(app)
