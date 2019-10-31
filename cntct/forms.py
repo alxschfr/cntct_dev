@@ -2,7 +2,11 @@
 # -*- coding: utf-8 -*-
 
 """
+python3 program to store and manipulate personal contact information for current contacts as
+class-objects in Postgresql using SQLAlchemy and Flask.
 
+WTForm definition of different forms for handeling various requests througout the whole page,
+for example signup, login as well as adding, updateing and deleting a contact
 """
 
 from flask_wtf import FlaskForm

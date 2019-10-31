@@ -1,11 +1,36 @@
 {% extends 'bootstrap/base.html' %}
 
+<!-- custom base template for the flask application to ensure that all pages follow a similar
+ structure. Extends the bootstrap base template to be able to easliy style the website
+ using flask bootstrap. You can find the current bootstrap base template in the reference
+ folder. Be aware that changes to that file won't do a thing, it's just to understand which
+ elements are already in there to be able to write proper html -->
+
+<!-- html attributes -->
+{% block html_attribs %} lang="en"{% endblock html_attribs %}
+
+<!-- inserting the title, can be overridden in single page templates -->
 {% block title %}CNTCT - Simply Contacts{% endblock %}
 
+<!-- setting meta attributes for the whole page -->
 {% block metas %}
-<meta charset="utf-8">
+	<meta charset="utf-8">
 {% endblock %}
 
+<!-- setting styles and scripts that have to be placed in the <head>-element of the page -->
+{%- block styles %}
+{{super()}}
+	<!-- Bootstrap CCS CDN -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+		  rel="stylesheet"
+		  integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+		  crossorigin="anonymous">
+	<!-- jQuery for Bootstrap -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+{%- endblock styles %}
+
+{% block body %}
+<!-- navigation bar / header of the homepage -->
 {% block navbar %}
 <div class="navbar navbar-default">
 	<div class="container">
@@ -27,7 +52,7 @@
 				<li><a href="{{ url_for('entry.profile') }}">Profile</a></li>
 				{% endif %}
 				{% if not current_user.is_authenticated %}
-				<li><a href="{{ url_for('auth.login') }}">Login</a></li>
+				<li><a href="{{ url_for('auth.login') }}">Log In</a></li>
 				<li><a href="{{ url_for('auth.signup') }}">Sign Up</a></li>
 				{% endif %}
 				{% if current_user.is_authenticated %}
@@ -39,6 +64,7 @@
 </div>
 {% endblock %}
 
+<!-- container for flashed messages for example when enterin wrong credentials -->
 {% block content %}
 	<div class="container">
 		{% with messages = get_flashed_messages() %}
@@ -49,7 +75,17 @@
 		{% endif %}
 		{% endwith %}
 
+		<!-- here goes the page body -->
 		{% block app_content %}{% endblock %}
 	</div>
 {% endblock %}
 
+<!-- scripts for the end of the <body>-tag -->
+{% block scripts %}
+	<!-- Bootstrap CDN Support -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+			integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+			crossorigin="anonymous"></script>
+{%- endblock scripts %}
+{% endblock body %}
+</html>

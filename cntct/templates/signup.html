@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+<!-- custom template for the page 'Sign In' with a WTForm for a user to input their credentials in order to sign up
+ for the app and send the request to the backend for verification. After successful verification
+  tthe user is redirected to the log in page. -->
+
+{% block metas %}
+<meta title="CNTCT - Sign Up">
+{% endblock %}
+
 {% block app_content %}
 <h1>Sign Up</h1>
 
@@ -20,16 +28,5 @@
 	<p>{{ form.submit() }}</p>
 
 </form>
-<!--
-<form method="POST" action="/signup">
-	<p>Emailaddress:</p>
-	<input type="email" name="email" placeholder="Your Email" autofokus="">
-	<p>Name:</p>
-	<input type="text" name="name" placeholder="Your Name" autofokus="">
-	<p>Password:</p>
-	<input type="password" name="password" placeholder="Your Password">
-	<input type="submit" value="Sign Up">
-</form>
--->
 
 {% endblock %}

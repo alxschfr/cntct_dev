@@ -3,8 +3,10 @@
 
 """
 python3 program to store and manipulate personal contact information for current contacts as
-class-objects in SQLite using SQLAlchemy and Flask. Want to learn python and familiarize myself
-with the concept of object-oriented programming. So mostly an exercise up until now.
+class-objects in Postgresql using SQLAlchemy and Flask.
+
+configuration classes that provide general app configuration, take sensitive variables (secret key, DB-URL)
+from environment variables (with possibility to host sensitive variables in a -env file
 """
 
 from os import getenv

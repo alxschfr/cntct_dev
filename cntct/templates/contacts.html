@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
+<!-- custom template for the page 'Contacts' that displays a form for adding a contact, list the contacts
+and two forms each to update and delete a contact from the list -->
+
+{% block metas %}
+<meta title="CNTCT - Log In">
+{% endblock %}
+
 {% block app_content %}
 <h1>Contacts</h1>
 <h2>Add contact</h2>
@@ -37,6 +44,5 @@
 	  {{ delete_contact.delete_contact() }}
   </form>
   </p>
-
 {% endfor %}
 {% endblock %}

@@ -3,13 +3,11 @@
 
 """
 python3 program to store and manipulate personal contact information for current contacts as
-class-objects in SQLite using SQLAlchemy and Flask. Want to learn python and familiarize myself
-with the concept of object-oriented programming. So mostly an exercise up until now. Based on
-following tutorials:
-- https://scotch.io/tutorials/authentication-and-authorization-with-flask-login
-- https://www.codementor.io/garethdwyer/building-a-crud-application-with-flask-and-sqlalchemy-dm3wv7yu2
-- https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
-- https://hackersandslackers.com/demystifying-flask-application-factory/
+class-objects in Postgresql using SQLAlchemy and Flask.
+
+Flask app factory pattern to create an instance of the app with initialised extensions and
+blueprints to separate different scenarios. Configuration of the app via separate file config.py
+that also gets some secret values from env variables
 """
 
 from flask import Flask
@@ -29,7 +27,7 @@ bs = Bootstrap()
 def create_app():
     """Initialize core application with flask app factory pattern (libraries, blueprints) """
     app = Flask(__name__)
-    app.config.from_object('config.Config')
+    app.config.from_object('config.DevelopmentConfig')
 
     # Initialise Plugins
     db.init_app(app)

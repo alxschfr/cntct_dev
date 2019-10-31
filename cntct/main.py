@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """
+python3 program to store and manipulate personal contact information for current contacts as
+class-objects in Postgresql using SQLAlchemy and Flask.
 
+flask blueprint to handle all generic views and requests
 """
 
 from flask import render_template, Blueprint
