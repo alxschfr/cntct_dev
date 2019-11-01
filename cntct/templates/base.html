@@ -63,9 +63,9 @@
 </div>
 {% endblock %}
 
-<!-- container for flashed messages for example when enterin wrong credentials -->
 {% block content %}
-	<div class="container">
+	<!-- container for flashed messages for example when entering wrong credentials -->
+	<div class="flashed_msgs container">
 		{% with messages = get_flashed_messages() %}
 		{% if messages %}
 			{% for message in messages %}
@@ -73,7 +73,9 @@
 			{% endfor %}
 		{% endif %}
 		{% endwith %}
-
+	</div>
+	<!-- container for app-content -->
+	<div class="app_content container">
 		<!-- here goes the page body -->
 		{% block app_content %}{% endblock %}
 	</div>

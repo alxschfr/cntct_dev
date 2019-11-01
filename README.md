@@ -8,6 +8,6 @@ following tutorials (and tons of SO answers):
 - https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
 - https://hackersandslackers.com/demystifying-flask-application-factory/
 
-You can find an upp and running deploy on heroku via https://cntct.herokuapp.com. Because it's the
+You can find an up and running deploy on heroku via https://cntct.herokuapp.com. Because it's the
 heroku free plan, the dyno has to be started again if it's the first request for half an hour. That
 results in an initial lag in site display. Once the dyno is running response time is quite fast

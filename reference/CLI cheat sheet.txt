@@ -2,15 +2,31 @@
 CLI Cheat Sheet
 -----------------------------
 
-* #'+ GIT +'# *
-git push heroku master = push active branch to remote heroku master branch, heroku will rebuild the application
-                         and restart dyno after successful deployment. Will reinstall requirements.txt if
-                         runtime.txt is updated with new python runtime requirement.
+*#':: DATABASE ::'#*
+flask db init =     initializes the database migration, creates "migrations" folder in
+                    the project directory, that have to be added to version controll
+flask db migrate =  generate initial migration, review migration script for as alembic
+                    does not recognise every change as it should
+flask db upgrade =  apply migration to database
 
-git status = check status of git repository, cd to project directory first
+*#':: GIT ::'#*
+git push heroku master =    push active branch to remote heroku master branch, heroku will
+                            rebuild the application and restart dyno after successful
+                            deployment. Will reinstall requirements.txt if runtime.txt
+                            is updated with new python runtime requirement.
 
-* #'+ GUNICORN +'# *
-gunicorn --bind 0.0.0.0:5000 wsgi:app = bind wsgi entry point to production ready gunicorn server
+git status =             check status of git repository, cd to project directory first
 
-* #'+ HEROKU +'# *
-heroku logs --tail = display tailed colored heroku logs in console
+*#':: GUNICORN ::'#*
+gunicorn --bind 0.0.0.0:5000 wsgi:app = bind wsgi entry point to production ready
+                                        gunicorn server
+
+*#':: HEROKU ::'#*
+heroku login =                  log in to heroku via the browser
+heroku login -i =               log in to heroku via CLI
+heroku logs --tail =            display tailed colored heroku logs in console
+heroku git:remote -a cntct =    connect git repository to remote heroku server
+
+**#':: PIP ::'#*
+pip freeze > requirements.txt = creates txt-file with all installed python extensions, for easily port the requirements
+                                to heroku/another individual
