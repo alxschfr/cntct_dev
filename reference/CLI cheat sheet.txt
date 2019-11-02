@@ -27,6 +27,9 @@ heroku login -i =               log in to heroku via CLI
 heroku logs --tail =            display tailed colored heroku logs in console
 heroku git:remote -a cntct =    connect git repository to remote heroku server
 
-**#':: PIP ::'#*
+*#':: PIP ::'#*
 pip freeze > requirements.txt = creates txt-file with all installed python extensions, for easily port the requirements
                                 to heroku/another individual
+
+*#':: PYTEST ::'#*
+pytest -W ignore::DeprecationWarning =  run pytest ignoring the DeprecationWarnings for python modules
